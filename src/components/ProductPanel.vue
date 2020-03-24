@@ -17,18 +17,22 @@ import axios from "axios";
 
 export default {
   name: 'ProductPanel',
+  
   props: {
     title: String,
     categoryAlias: String,
   },
+
   components: {
     ProductCard
   },
+
   data() {
     return {
       products: []
     };
   },
+
   mounted() {
     axios
       .get("https://euas.person.ee/categories/" + this.categoryAlias + "/products")

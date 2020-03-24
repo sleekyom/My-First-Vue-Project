@@ -4,12 +4,12 @@
     <ProductPanel title="Best offers"/>
     <ProductPanel title="Latest arrivals"/>
     <ProductPanel title="Sale"/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import ProductPanel from './ProductPanel.vue'
-
+import ProductPanel from "./ProductPanel"
 export default {
   name: 'MainPage',
   components: {
