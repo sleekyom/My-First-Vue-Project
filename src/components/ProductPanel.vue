@@ -45,7 +45,7 @@ export default {
 
 <style scoped>
 .product-panel {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   margin-bottom: 15px;
 }
 </style>

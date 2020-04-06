@@ -3,26 +3,31 @@
     <h3>{{product.title}}</h3>
     <b-row>
       <b-col cols="5">
-         <img v-if="selected.image" :src="selected.image" class="product-image" />
+        <img v-if="selected.image" :src="selected.image" class="product-image" />
         <img v-else :src="product.image" class="product-image" />
       </b-col>
       <b-col cols="7">
-        <p>
-        {{product.description}}
-        </p>
+        <p>{{product.description}}</p>
         <p>Select Option</p>
+        <b-alert
+          v-if="this.qty > this.selected.qty"
+          show
+          variant="warning"
+        >You can't select more than {{selected.qty}} items available in stock.</b-alert>
         <b-form-select v-model="selected" :options="options" size="sm" class></b-form-select>
-        <p>
-          Option selected: {{selected.title}}
-        </p>
+        <p>Option selected: {{selected.title}}</p>
+        <p>Available quantity: {{selected.qty}}</p>
 
-        <p>Price per Unit: ${{selected.price}}</p>
-        <p>Total Cost of Items Selected: ${{totalPrice}}</p>
-        <p>Qty: {{qty}}</p>
+        <p>Cost per Unit: €{{selected.price}}</p>
+        <p>Total Cost of Items Selected: €{{totalPrice}}</p>
+        <p>Qty selected: {{qty}}</p>
 
         <div class="mt-2 d-flex">
-          <b-button variant="dark" class="mr-2" @click="decreaseCount()">-</b-button>
-          <b-button variant="success" @click="increaseCount()">+</b-button>
+          <b-button size="sm" variant="dark" class="mr-2" @click="decreaseCount()">-</b-button>
+          <b-button size="sm" variant="success" @click="increaseCount()">+</b-button>
+        </div>
+        <div class="mt-2">
+          <b-button size="sm" variant="success" @click="addToCart()">Add to Cart</b-button>
         </div>
       </b-col>
     </b-row>
@@ -31,19 +36,18 @@
 
 <script>
 import axios from "axios";
-import {dataOptions} from "../utils/index"
-
+import { dataOptions } from "../utils/index";
 
 export default {
-  name: 'ProductPage',
+  name: "ProductPage",
   data: function() {
     return {
       product: {},
       options: [],
-      selected: {title: "", price: "", image:""},
+      selected: { title: "", price: "", image: "" },
       qty: 0,
-      totalPrice:0
-    }
+      totalPrice: 0
+    };
   },
   mounted() {
     axios
@@ -51,17 +55,14 @@ export default {
       .then(response => {
         this.product = response.data;
         this.options = dataOptions(response.data.options);
-      }).catch(errr => console.log(errr));
+      })
+      .catch(errr => console.log(errr));
   },
 
-methods: {
+  methods: {
     increaseCount() {
-      if (this.selected.qty === this.qty) {
-        alert("No more Item in stock");
-      } else {
-        this.qty = this.qty + 1;
-        this.totalPrice = this.selected.price * this.qty;
-      }
+      this.qty = this.qty + 1;
+      this.totalPrice = this.selected.price * this.qty;
     },
     decreaseCount() {
       if (this.qty === 0) {
@@ -71,6 +72,20 @@ methods: {
       this.qty = this.qty - 1;
       this.totalPrice = this.selected.price * this.qty;
     },
+    addToCart() {
+      if (!this.$root.$data.cart.items) 
+        this.$root.$data.cart.items = [];
+        this.$root.$data.cart.items.push({
+          productId: this.product.id,
+          qty: this.qty,
+          optionCode: this.selected.code,
+          optionImage: this.selected.image,
+          price: this.selected.price,
+          total: this.selected.price * this.qty
+        })
+        this.$root.$data.saveCart();
+      
+    }
   }
 };
 </script>
@@ -78,5 +93,6 @@ methods: {
 <style scoped>
 .product-image {
   width: 300px;
+  height: 300px;
 }
 </style>

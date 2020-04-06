@@ -14,8 +14,11 @@
 
     <b-button
     :to="'/products/' + product.id"
-     variant="primary">More details</b-button>
+     size="sm" variant="primary">More details</b-button>
+     <span class="ml-2"><b-button size="sm"
+     variant="success" @click="addToCart()">Add to Cart</b-button></span>
   </b-card>
+  
 </template>
 
 <script>
@@ -23,9 +26,30 @@ export default {
   name: 'ProductCard',
   props: {
     product: Object
+  },
+
+  methods: {
+    addToCart() {
+      if (!this.$root.$data.cart.items) 
+        this.$root.$data.cart.items = [];
+        this.$root.$data.cart.items.push({
+          productId: this.product.id,
+          qty: 1,
+          optionCode: this.product.options[0].code,
+          optionImage: this.product.options[0].image,
+          price: this.product.options[0].price,
+          total: this.product.options[0].price 
+        })
+        this.$root.$data.saveCart();
+      
+    }
   }
 }
 </script>
 
 <style scoped>
+b-card{
+  width: 300px;
+  
+}
 </style>
