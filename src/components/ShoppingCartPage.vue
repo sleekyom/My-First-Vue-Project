@@ -9,36 +9,73 @@
         <th>Amount</th>
         <th>Actions</th>
       </tr>
-      <tr v-for="item in this.$root.$data.cart.items" :key="item.productId">
-        <td>{{item.productId}}</td>
-        <td>{{item.price}}</td>
-        <td>{{item.qty}}</td>
-        <td>{{item.total}}</td>
-        <td>Actions here</td>
+
+            <tr  v-for="(item, index) in this.$root.$data.cart.items" :key="item.productId + '-' + index">
+        <td>
+          <b-link :to="'/products/' + item.productId"> 
+          <img :src="item.optionImage" class="option-image" />
+          </b-link>
+        </td>
+        <td>{{item.price }}</td>
+        <td>{{item.qty }} </td>
+        <td>{{item.total }} </td>
+        <td>
+          <b-button variant="danger"
+          @click="removeItem(index)">Remove </b-button>
+        </td>
+      </tr>
+      <tr>
+        <td>Total: </td>  
+        <td>{{total}}</td>
       </tr>
     </table>
+    <b-button variant="success" size="lg"
+     @click="orderNow"
+    v-if="this.items.length"
+    > Order Now!</b-button>
+    
   </div>
 </template>
 
 <script>
-
-import axios from "axios"
+import axios from "axios";
 export default {
-  name: "ShoppingCartPage",
-  data() {
-    return {
-    };
+  name: 'shoppingCart',
+  computed:{
+    items:function () {
+      return this.$root.$data.cart.items || [];
+    },
+    total:function() {
+      let sum=0
+      for (const item of this.items ){
+        sum+=item.total
+      }
+      return sum
+    }
   },
-  mounted() {
-    axios
-      .get("https://euas.person.ee/cart/" + this.$route.params.productId)
-      .then(response => {
-        this.product = response.data;
+  methods: {
+    removeItem: function (index) {
+      if(!this.$root.$data.cart.items) this.$root.$data.cart.items= []
+      this.$root.$data.cart.items.splice(index, 1);
+      console.log(this.$root.$data.cart.items)
+      this.$root.$data.saveCart();
+    },
+    orderNow: function(){
+      // let data= this.$root.$data
+      axios.post("https://euas.person.ee/user/carts/"+ this.$root.$data.cart.id + "/orders",
+      this.$root.$data.cart).then(function(res){
+        console.log(res.data);
+        // data.cart.items = res.data.items
+      // data.reinitCart();
       })
-      .catch(errr => console.log(errr));
-  }
-};
+     this.$router.push('/orderlisting')
+    }
+  }  
+}
 </script>
-
 <style scoped>
+.option-image{
+  max-height: 50px;
+  max-width: 50px;
+}
 </style>

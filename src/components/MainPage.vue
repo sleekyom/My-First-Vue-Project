@@ -1,9 +1,10 @@
 <template>
   <div class="main-page">
-    Main page from component
-    <ProductPanel title="Best offers"/>
-    <ProductPanel title="Latest arrivals"/>
-    <ProductPanel title="Sale"/>
+    <ProductPanel title="Recommended" section="recommended"/>
+
+    <ProductPanel title="BuyNow" section="buynow"/>
+
+    <ProductPanel title="TopSelling" section="topselling"/>
     <router-view></router-view>
   </div>
 </template>

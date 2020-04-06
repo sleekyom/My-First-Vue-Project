@@ -34,7 +34,7 @@ export default {
         this.$root.$data.cart.items = [];
         this.$root.$data.cart.items.push({
           productId: this.product.id,
-          qty: 1,
+          qty: this.product.qty,
           optionCode: this.product.options[0].code,
           optionImage: this.product.options[0].image,
           price: this.product.options[0].price,
