@@ -21,6 +21,7 @@ export default {
   props: {
     title: String,
     categoryAlias: String,
+    section: String,
   },
 
   components: {
@@ -34,11 +35,19 @@ export default {
   },
 
   mounted() {
-    axios
+    if (this.categoryAlias) {
+      axios
       .get("https://euas.person.ee/categories/" + this.categoryAlias + "/products")
       .then(response => {
         this.products = response.data;
       });
+    } else {
+      axios
+      .get("https://euas.person.ee/products/tags/" + this.section)
+      .then(response => {
+        this.products = response.data;
+      });
+    }
   }
 }
 </script>

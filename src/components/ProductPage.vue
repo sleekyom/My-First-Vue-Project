@@ -84,6 +84,7 @@ export default {
           total: this.selected.price * this.qty
         })
         this.$root.$data.saveCart();
+        this.$router.push("/cart")
       
     }
   }
