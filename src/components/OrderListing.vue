@@ -53,7 +53,7 @@ export default {
         sum += item.total;
       }
       return sum;
-    },
+    }
     // orderDate: () => {
     //   let today = new Date();
     //   let dd = String(today.getDate()).padStart(2, "0");

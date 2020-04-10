@@ -1,7 +1,14 @@
 <template>
   <div class="product-panel">
     <h3>{{ title }}</h3>
-    {{categoryAlias}}
+    <b-alert :show="showConfirmation" variant="info">
+      @cart-updated="showConfirmation=true"
+            <h4 class="alert-heading">Well</h4>
+            <p>Item successfully added to cart</p>
+            <p>
+              <b-button to="/cart">Checkout</b-button>
+            </p>
+          </b-alert>
     <b-card-group deck>
       <ProductCard
         :product="product"
@@ -30,7 +37,8 @@ export default {
 
   data() {
     return {
-      products: []
+      products: [],
+      showConfirmation: false
     };
   },
 

@@ -1,27 +1,27 @@
 <template>
   <div class="main-page">
     <h2 class="title">Welcome</h2>
-    <ProductPanel title="Recommended" section="recommended"/>
+    <ProductPanel title="Recommended" section="recommended" />
 
-    <ProductPanel title="BuyNow" section="buynow"/>
+    <ProductPanel title="BuyNow" section="buynow" />
 
-    <ProductPanel title="TopSelling" section="topselling"/>
+    <ProductPanel title="TopSelling" section="topselling" />
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import ProductPanel from "./ProductPanel"
+import ProductPanel from "./ProductPanel";
 export default {
-  name: 'MainPage',
+  name: "MainPage",
   components: {
     ProductPanel
-  },
-}
+  }
+};
 </script>
 
 <style scoped>
-.title{
+.title {
   text-align: center;
 }
 </style>

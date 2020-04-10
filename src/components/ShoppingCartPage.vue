@@ -1,7 +1,10 @@
 <template>
   <div class="shopping-cart">
     <h2>Shopping Cart</h2>
-    <table class="table">
+    <div
+      v-if="!items.length"
+    >Your shopping cart is empty! Please add some items to your shopping cart</div>
+    <table class="table" v-if="items.length">
       <tr>
         <th>Product</th>
         <th>Price</th>
@@ -55,22 +58,22 @@ export default {
     removeItem: function(index) {
       if (!this.$root.$data.cart.items) this.$root.$data.cart.items = [];
       this.$root.$data.cart.items.splice(index, 1);
-      console.log(this.$root.$data.cart.items);
       this.$root.$data.saveCart();
     },
     orderNow: function() {
       let data = this.$root.$data;
-      let router=this.$router
+      let router = this.$router;
       axios
         .post(
           "https://euas.person.ee/user/carts/" +
             this.$root.$data.cart.id +
-            "/orders"
+            "/orders",
+          this.$root.$data.cart
         )
         .then(function() {
+          router.push("/orders/" + data.cart.id + "?success=true");
           data.reinitCart();
         });
-      router.push("/orderlisting");
     }
   }
 };

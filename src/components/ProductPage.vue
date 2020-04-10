@@ -29,6 +29,15 @@
         <div class="mt-2">
           <b-button size="sm" variant="success" @click="addToCart()">Add to Cart</b-button>
         </div>
+        <div class="mt-2">
+          <b-alert :show="showConfirmation" variant="info">
+            <h4 class="alert-heading">Thanks</h4>
+            <p>Item successfully added to cart</p>
+            <p>
+              <b-button to="/cart">Checkout</b-button>
+            </p>
+          </b-alert>
+        </div>
       </b-col>
     </b-row>
   </div>
@@ -46,7 +55,8 @@ export default {
       options: [],
       selected: { title: "", price: "", image: "" },
       qty: 0,
-      totalPrice: 0
+      totalPrice: 0,
+      showConfirmation: false
     };
   },
   mounted() {
@@ -73,19 +83,18 @@ export default {
       this.totalPrice = this.selected.price * this.qty;
     },
     addToCart() {
-      if (!this.$root.$data.cart.items) 
-        this.$root.$data.cart.items = [];
-        this.$root.$data.cart.items.push({
-          productId: this.product.id,
-          qty: this.qty,
-          optionCode: this.selected.code,
-          optionImage: this.selected.image,
-          price: this.selected.price,
-          total: this.selected.price * this.qty
-        })
-        this.$root.$data.saveCart();
-        this.$router.push("/cart")
-      
+      if (!this.$root.$data.cart.items) this.$root.$data.cart.items = [];
+      this.$root.$data.cart.items.push({
+        productId: this.product.id,
+        qty: this.qty,
+        optionCode: this.selected.code,
+        optionImage: this.selected.image,
+        price: this.selected.price,
+        total: this.selected.price * this.qty
+      });
+      this.$root.$data.saveCart();
+      // this.$router.push("/cart")
+      this.showConfirmation = true;
     }
   }
 };

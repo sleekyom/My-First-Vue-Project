@@ -6,16 +6,15 @@
 </template>
 
 <script>
-import ProductPanel from './ProductPanel.vue'
+import ProductPanel from "./ProductPanel.vue";
 
 export default {
-  name: 'CategoryPage',
+  name: "CategoryPage",
   components: {
     ProductPanel
   }
-}
+};
 </script>
 
 <style scoped>
-
 </style>
