@@ -19,7 +19,7 @@
         <p>Available quantity: {{selected.qty}}</p>
 
         <p>Cost per Unit: €{{selected.price}}</p>
-        <p>Total Cost of Items Selected: €{{totalPrice}}</p>
+        <p>Total Cost of Items Selected: €{{totalPrice.toFixed(2)}}</p>
         <p>Qty selected: {{qty}}</p>
 
         <div class="mt-2 d-flex">
@@ -35,6 +35,7 @@
             <p>Item successfully added to cart</p>
             <p>
               <b-button to="/cart">Checkout</b-button>
+              <b-button variant="info" @click="closeAlert">Continue Shopping</b-button>
             </p>
           </b-alert>
         </div>
@@ -93,8 +94,10 @@ export default {
         total: this.selected.price * this.qty
       });
       this.$root.$data.saveCart();
-      // this.$router.push("/cart")
       this.showConfirmation = true;
+    },
+    closeAlert: function() {
+      this.showConfirmation = false;
     }
   }
 };

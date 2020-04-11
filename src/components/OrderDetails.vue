@@ -59,6 +59,8 @@ export default {
     };
   },
   mounted() {
+    console.log(this.$route.query.success);
+    
     axios
       .get("https://euas.person.ee/user/orders/" + this.$route.params.orderId)
       .then(response => {

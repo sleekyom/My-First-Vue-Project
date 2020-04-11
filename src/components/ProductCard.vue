@@ -41,8 +41,9 @@ export default {
           total: this.product.options[0].price 
         })
         this.$root.$data.saveCart();
-        this.$emit('cart-updated')
-        //this.$router.push('/cart')
+        this.$emit('notify')
+        
+        // this.$router.push('/cart')
       
     }
   }

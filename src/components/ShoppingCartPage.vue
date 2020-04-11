@@ -21,9 +21,9 @@
         </td>
         <td>€ {{item.price }}</td>
         <td>{{item.qty }}</td>
-        <td>€ {{item.total }}</td>
+        <td>€ {{item.total.toFixed(2) }}</td>
         <td>
-          <b-button variant="danger" @click="removeItem(index)">Remove</b-button>
+          <b-button variant="danger" @click="removeItem(index)"><i class="fas fa-trash-alt"></i></b-button>
         </td>
       </tr>
       <tr>
@@ -34,7 +34,7 @@
         <td></td>
       </tr>
     </table>
-    <b-button variant="success" size="lg" @click="orderNow" v-if="this.items.length">Order Now!</b-button>
+    <b-button variant="success"  @click="orderNow" v-if="this.items.length">Order Now</b-button>
   </div>
 </template>
 
@@ -51,7 +51,7 @@ export default {
       for (const item of this.items) {
         sum += item.total;
       }
-      return sum;
+      return sum.toFixed(2);
     }
   },
   methods: {
@@ -71,7 +71,7 @@ export default {
           this.$root.$data.cart
         )
         .then(function() {
-          router.push("/orders/" + data.cart.id + "?success=true");
+          router.push("/orderdetails/" + data.cart.id + "?success=true");
           data.reinitCart();
         });
     }
