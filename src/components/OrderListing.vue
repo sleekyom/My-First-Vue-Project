@@ -7,7 +7,6 @@
         <th>Items</th>
         <th>Total Amount</th>
         <th>Actions</th>
-        <th>Date</th>
       </tr>
 
       <tr v-for="order in orders" :key="order.id">
@@ -21,7 +20,6 @@
             <b-button variant="primary">Order details</b-button>
           </b-link>
         </td>
-        <td>{{`${Date()}`.substr(4,11)}}</td>
       </tr>
     </table>
   </div>
@@ -54,15 +52,6 @@ export default {
       }
       return sum;
     }
-    // orderDate: () => {
-    //   let today = new Date();
-    //   let dd = String(today.getDate()).padStart(2, "0");
-    //   let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-    //   let yyyy = today.getFullYear();
-
-    //   today = mm + "/" + dd + "/" + yyyy;
-    //   document.write(today);
-    // }
   }
 };
 </script>
