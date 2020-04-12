@@ -17,7 +17,7 @@
         <td>€ {{ orderAmount(order) }}</td>
         <td>
           <b-link :to="'/orderdetails/'+ order.id">
-            <b-button variant="primary">Order details</b-button>
+            <b-button>Order details</b-button>
           </b-link>
         </td>
       </tr>
@@ -61,5 +61,15 @@ export default {
 th,
 td {
   text-align: center;
+  border: solid 1px;
+}
+
+table{
+  width: 98%;
+}
+
+.orderListing{
+  background-color: #999c9f;
+  height: 100%;
 }
 </style>

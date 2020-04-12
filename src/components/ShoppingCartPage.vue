@@ -83,4 +83,8 @@ export default {
   max-height: 50px;
   max-width: 50px;
 }
+.shopping-cart{
+  background-color: #999c9f;
+  height: 100%;
+}
 </style>

@@ -25,6 +25,11 @@ export default {
 <style scoped>
 .profile-title {
   text-align: center;
-  margin-top: 2rem;
+  padding-top: 5px;
+}
+
+#profile{
+  background-color: #999c9f;
+  height: 100%;
 }
 </style>

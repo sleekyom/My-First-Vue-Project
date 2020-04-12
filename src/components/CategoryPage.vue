@@ -17,4 +17,8 @@ export default {
 </script>
 
 <style scoped>
+.category-page{
+  background-color: #999c9f;
+  height: 100%;
+}
 </style>

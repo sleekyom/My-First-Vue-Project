@@ -1,9 +1,10 @@
 <template>
-  <div>
+  <div class="category-menu">
     <b-nav vertical>
-      <b-nav-item
+      <b-nav-item class="item"
         v-for="category in categories"
-        :key="category.alias" :to="'/categories/' + category.alias"
+        :key="category.alias"
+        :to="'/categories/' + category.alias"
       >{{category.title}}</b-nav-item>
     </b-nav>
   </div>
@@ -28,4 +29,12 @@ export default {
 </script>
 
 <style scoped>
+a {
+  color: #343a40;;
+}
+.category-menu{
+  background-color: #999c9f;
+  height: 100%;
+  padding-right: 0;
+}
 </style>

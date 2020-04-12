@@ -26,7 +26,7 @@
         <td>€ {{item.total }}</td>
         <td>
           <b-link :to="'/products/'+ item.productId">
-            <b-button variant="primary">Product details</b-button>
+            <b-button >Product details</b-button>
           </b-link>
         </td>
       </tr>
@@ -85,5 +85,15 @@ export default {
 th,
 td {
   text-align: center;
+  border: solid 1px;
+}
+
+table{
+  width: 98%;
+}
+
+.orderDetails{
+  background-color: #999c9f;
+  height: 100%;
 }
 </style>

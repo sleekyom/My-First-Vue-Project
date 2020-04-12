@@ -24,4 +24,10 @@ export default {
 .title {
   text-align: center;
 }
+
+.main-page{
+  background-color: #999c9f;
+  margin: 0;
+  padding: 0;
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="category-page">
+  <div class="product-page">
     <h3>{{product.title}}</h3>
     <b-row>
       <b-col cols="5">
@@ -14,9 +14,9 @@
           show
           variant="warning"
         >You can't select more than {{selected.qty}} items available in stock.</b-alert>
-        <b-form-select v-model="selected" :options="options" size="sm" class></b-form-select>
+        <b-form-select v-model="selected" :options="options" size="sm" class="dropdown"></b-form-select>
         <p>Option selected: {{selected.title}}</p>
-        <p>Available quantity: {{selected.qty}}</p>
+        <p>Available in stock: {{selected.qty}}</p>
 
         <p>Cost per Unit: €{{selected.price}}</p>
         <p>Total Cost of Items Selected: €{{totalPrice.toFixed(2)}}</p>
@@ -107,5 +107,13 @@ export default {
 .product-image {
   width: 300px;
   height: 300px;
+}
+
+.product-page {
+  background-color: #999c9f;
+}
+
+.dropdown{
+  width: 80%;
 }
 </style>
