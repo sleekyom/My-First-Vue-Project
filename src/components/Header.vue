@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <b-navbar toggleable="lg" type="dark" variant="dark">
-      <b-navbar-brand to="/"><i class="fas fa-2x fa-american-sign-language-interpreting"></i></b-navbar-brand>
+      <b-navbar-brand to="/" class="logo"><i class="fas fa-md fa-american-sign-language-interpreting"></i> Shopgrad</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -35,5 +35,8 @@ export default {
 </script>
 
 <style scoped>
-
+@import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
+.logo{
+  font-family: 'Anton', sans-serif;
+}
 </style>
