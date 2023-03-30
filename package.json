@@ -1,7 +1,7 @@
 {
   "name": "e-commerce-app",
   "version": "0.1.0",
-  "homepage": "https://github.com/sleekyom/My-First-Vue-Project"
+  "homepage": "https://github.com/sleekyom/My-First-Vue-Project",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
